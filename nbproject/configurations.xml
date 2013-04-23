@@ -17,6 +17,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>vsql_connection.cpp</itemPath>
+      <itemPath>vsql_statement.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -47,6 +48,8 @@
       </item>
       <item path="vsql_query.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="vsql_statement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="vsql_statement.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
@@ -76,6 +79,8 @@
       <item path="vsql_connection.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_query.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="vsql_statement.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="vsql_statement.h" ex="false" tool="3" flavor2="0">
       </item>

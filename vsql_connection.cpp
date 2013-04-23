@@ -1,4 +1,4 @@
-#include "vsql_connection.h"
+#include "vsql_connection_mysql.h"
 
 VSQLConnection::VSQLConnection(std::string str_connection, const int db_type) {
     this->str_conn = str_connection;

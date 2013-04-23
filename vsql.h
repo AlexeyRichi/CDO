@@ -7,8 +7,8 @@
 
 #ifndef VSQL_H
 #define	VSQL_H
-#include "vsql_connection.h"
-#include "vsql_query.h"
+#include "vsql_connection_mysql.h"
+#include "vsql_connection_pgsql.h"
 #include <libpq-fe.h>
 #include <mysql/mysql.h>
 

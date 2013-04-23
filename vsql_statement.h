@@ -14,7 +14,7 @@
 #include <sstream>
 #include <map>
 #include <vector>
-#include "vsql_connection.h"
+#include "vsql_connection_mysql.h"
 
 class VSQLStatement {
     

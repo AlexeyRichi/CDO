@@ -35,7 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/vsql_connection.o
+	${OBJECTDIR}/vsql_connection.o \
+	${OBJECTDIR}/vsql_statement.o
 
 
 # C Compiler Flags
@@ -66,6 +67,11 @@ ${OBJECTDIR}/vsql_connection.o: vsql_connection.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_connection.o vsql_connection.cpp
+
+${OBJECTDIR}/vsql_statement.o: vsql_statement.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_statement.o vsql_statement.cpp
 
 # Subprojects
 .build-subprojects:
