@@ -6,7 +6,8 @@
                    projectFiles="true">
       <itemPath>vsql.h</itemPath>
       <itemPath>vsql_connection.h</itemPath>
-      <itemPath>vsql_query.h</itemPath>
+      <itemPath>vsql_connection_mysql.h</itemPath>
+      <itemPath>vsql_connection_pgsql.h</itemPath>
       <itemPath>vsql_statement.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -39,6 +40,9 @@
         <compilerSet>default</compilerSet>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <commandLine>-lpq -lmysqlclient -L/usr/lib64/mysql</commandLine>
+        </ccTool>
       </compileType>
       <item path="vsql.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -46,7 +50,9 @@
       </item>
       <item path="vsql_connection.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="vsql_query.h" ex="false" tool="3" flavor2="0">
+      <item path="vsql_connection_mysql.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="vsql_connection_pgsql.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_statement.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -78,7 +84,9 @@
       </item>
       <item path="vsql_connection.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="vsql_query.h" ex="false" tool="3" flavor2="0">
+      <item path="vsql_connection_mysql.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="vsql_connection_pgsql.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_statement.cpp" ex="false" tool="1" flavor2="0">
       </item>
