@@ -43,8 +43,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-lpq -lmysqlclient -L/usr/lib64/mysql
-CXXFLAGS=-lpq -lmysqlclient -L/usr/lib64/mysql
+CCFLAGS=-lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto
+CXXFLAGS=-lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -66,12 +66,12 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libVSQL.${CND_DLIB_EXT}: ${OBJECTFILE
 ${OBJECTDIR}/vsql_connection.o: vsql_connection.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -lpq -lmysqlclient -L/usr/lib64/mysql -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_connection.o vsql_connection.cpp
+	$(COMPILE.cc) -g -lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_connection.o vsql_connection.cpp
 
 ${OBJECTDIR}/vsql_statement.o: vsql_statement.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -lpq -lmysqlclient -L/usr/lib64/mysql -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_statement.o vsql_statement.cpp
+	$(COMPILE.cc) -g -lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_statement.o vsql_statement.cpp
 
 # Subprojects
 .build-subprojects:

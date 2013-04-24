@@ -41,7 +41,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
-          <commandLine>-lpq -lmysqlclient -L/usr/lib64/mysql</commandLine>
+          <commandLine>-lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto</commandLine>
         </ccTool>
       </compileType>
       <item path="vsql.h" ex="false" tool="3" flavor2="0">

@@ -19,7 +19,7 @@ namespace VSQL {
     class VSQLConnection {
     private:
         std::string str_conn;
-        bool in_transaction = false;
+        bool in_transaction;
 
     public:
         VSQLConnection(std::string str_connection, const int db_type);
