@@ -18,7 +18,10 @@ namespace VSQL {
 
     class VSQLConnection {
     private:
-        std::string str_conn;
+        std::string host;
+        std::string user;
+        std::string passwd;
+        std::string dbname;
         bool in_transaction;
 
     public:
