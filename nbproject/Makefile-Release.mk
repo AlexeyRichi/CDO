@@ -35,7 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/vsql_connection.o \
+	${OBJECTDIR}/vsql_connection_mysql.o \
+	${OBJECTDIR}/vsql_connection_pgsql.o \
 	${OBJECTDIR}/vsql_statement.o
 
 
@@ -63,10 +64,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libVSQL.${CND_DLIB_EXT}: ${OBJECTFILE
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libVSQL.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -shared -fPIC
 
-${OBJECTDIR}/vsql_connection.o: vsql_connection.cpp 
+${OBJECTDIR}/vsql_connection_mysql.o: vsql_connection_mysql.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_connection.o vsql_connection.cpp
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_connection_mysql.o vsql_connection_mysql.cpp
+
+${OBJECTDIR}/vsql_connection_pgsql.o: vsql_connection_pgsql.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_connection_pgsql.o vsql_connection_pgsql.cpp
 
 ${OBJECTDIR}/vsql_statement.o: vsql_statement.cpp 
 	${MKDIR} -p ${OBJECTDIR}
