@@ -11,6 +11,8 @@
 #include <cstdlib>
 #include <sstream>
 #include <fstream>
+#include <map>
+#include <vector>
 #include <mysql/mysql.h>
 
 namespace VSQL_MYSQL {
