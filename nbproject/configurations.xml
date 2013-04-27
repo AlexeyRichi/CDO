@@ -17,6 +17,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>vsql_connection_mysql.cpp</itemPath>
+      <itemPath>vsql_connection_pgsql.cpp</itemPath>
       <itemPath>vsql_statement.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -30,7 +31,6 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>vsql_connection_pgsql.cpp</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
