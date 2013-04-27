@@ -4,7 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>vsql.h</itemPath>
       <itemPath>vsql_connection_mysql.h</itemPath>
       <itemPath>vsql_connection_pgsql.h</itemPath>
       <itemPath>vsql_statement.h</itemPath>
@@ -44,8 +43,6 @@
           <commandLine>-lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto</commandLine>
         </ccTool>
       </compileType>
-      <item path="vsql.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="vsql_connection_mysql.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="vsql_connection_mysql.h" ex="false" tool="3" flavor2="0">
@@ -78,8 +75,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="vsql.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="vsql_connection_mysql.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="vsql_connection_mysql.h" ex="false" tool="3" flavor2="0">
