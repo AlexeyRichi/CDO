@@ -35,8 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/vsql_connection_mysql.o \
-	${OBJECTDIR}/vsql_connection_pgsql.o
+	${OBJECTDIR}/vsql_mysql.o \
+	${OBJECTDIR}/vsql_pgsql.o
 
 
 # C Compiler Flags
@@ -63,15 +63,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libVSQL.${CND_DLIB_EXT}: ${OBJECTFILE
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libVSQL.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -shared -fPIC
 
-${OBJECTDIR}/vsql_connection_mysql.o: vsql_connection_mysql.cpp 
+${OBJECTDIR}/vsql_mysql.o: vsql_mysql.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_connection_mysql.o vsql_connection_mysql.cpp
+	$(COMPILE.cc) -g -lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_mysql.o vsql_mysql.cpp
 
-${OBJECTDIR}/vsql_connection_pgsql.o: vsql_connection_pgsql.cpp 
+${OBJECTDIR}/vsql_pgsql.o: vsql_pgsql.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_connection_pgsql.o vsql_connection_pgsql.cpp
+	$(COMPILE.cc) -g -lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_pgsql.o vsql_pgsql.cpp
 
 # Subprojects
 .build-subprojects:
