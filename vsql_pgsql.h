@@ -7,6 +7,9 @@
 
 #ifndef VSQL_CONNECTION_PGSQL_H
 #define	VSQL_CONNECTION_PGSQL_H
+#define PARAM_STR 1;
+#define PARAM_INT 2;
+#define PARAM_FLOAT 3;
 #include <cstdio>
 #include <cstdlib>
 #include <sstream>
@@ -16,25 +19,8 @@
 #include <libpq-fe.h>
 
 namespace VSQL_PGSQL {
-
-    typedef std::vector<std::string> Row;
+    typedef std::map<std::string, std::string> Row;
     typedef std::map<std::string, Row> ResultSet;
-
-    class Connection {
-    private:
-        std::string host;
-        std::string user;
-        std::string passwd;
-        std::string dbname;
-        bool in_transaction;
-
-    public:
-        Connection(std::string str_connection);
-        bool openConnection();
-        bool closeConnection();
-        std::string showServerVersion();
-
-    };
 
     class Statement {
     private:
@@ -48,6 +34,28 @@ namespace VSQL_PGSQL {
         void * fetchObject();
         int rowCount();
         int columnCount();
+    };
+
+   
+    class Connection {
+    private:
+        std::string _host;
+        std::string _user;
+        std::string _passwd;
+        std::string _dbname;
+        int _port;
+        bool _in_transaction;
+        PGconn * _conn;
+        PGresult * _result_set;
+
+    public:
+        Connection(std::string host, std::string user, std::string passwd, std::string dbname, int port);
+        bool openConnection();
+        bool exec();
+        VSQL_PGSQL::Statement query();
+        bool closeConnection();
+        std::string getServerVersion();
+
     };
 }
 
