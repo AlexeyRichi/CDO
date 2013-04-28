@@ -25,6 +25,8 @@ namespace VSQL_PGSQL {
     class Statement {
     private:
         std::string _queryString;
+        PGconn * _conn;
+        PGresult * _result_set;
     public:
         void bindParam(int param, void * value, int data_type);
         void bindValue(std::string param, void * value, int data_type);
@@ -36,7 +38,6 @@ namespace VSQL_PGSQL {
         int columnCount();
     };
 
-   
     class Connection {
     private:
         std::string _host;
@@ -47,14 +48,21 @@ namespace VSQL_PGSQL {
         bool _in_transaction;
         PGconn * _conn;
         PGresult * _result_set;
+        std::string _error_message;
+        void clearResultSet();
 
     public:
         Connection(std::string host, std::string user, std::string passwd, std::string dbname, int port);
         bool openConnection();
-        bool exec();
-        VSQL_PGSQL::Statement query();
+        bool beginTransaction();
+        bool commit();
+        bool rollBack();
+        bool exec(std::string sql);
+        VSQL_PGSQL::Statement query(std::string sql);
         bool closeConnection();
+        std::string getErrorMessage();
         std::string getServerVersion();
+        
 
     };
 }
