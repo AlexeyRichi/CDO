@@ -55,8 +55,9 @@ namespace VSQL_PGSQL {
         Connection(std::string host, std::string user, std::string passwd, std::string dbname, int port);
         bool openConnection();
         bool beginTransaction();
-        bool commit();
-        bool rollBack();
+        bool savePointTransaction(std::string savePointName);
+        bool commitTransaction();
+        bool rollbackTransaction();
         bool exec(std::string sql);
         VSQL_PGSQL::Statement query(std::string sql);
         bool closeConnection();

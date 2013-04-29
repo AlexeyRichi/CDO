@@ -36,8 +36,8 @@ bool VSQL_PGSQL::Connection::openConnection() {
 
 bool VSQL_PGSQL::Connection::beginTransaction() {
     //Começa a transaction
-    this->_result_set = PQexec(this->_conn, "begin transaction");
-    
+    this->_result_set = PQexec(this->_conn, "BEGIN TRANSACTION");
+
     if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
         //Se entrar aqui é porque a abertura da transaction funfou
         this->clearResultSet();
@@ -53,10 +53,30 @@ bool VSQL_PGSQL::Connection::beginTransaction() {
     }
 }
 
-bool VSQL_PGSQL::Connection::commit() {
+bool VSQL_PGSQL::Connection::savePointTransaction(std::string savePointName) {
+    char * sql = new char[300];
+    sprintf(sql, "SAVE POINT %s", savePointName.c_str());
+    this->_result_set = PQexec(this->_conn, sql);
+
+    if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
+        //Se entrar aqui é porque o save da transaction funfou
+        this->clearResultSet();
+        return true;
+    } else if (PQresultStatus(this->_result_set) == PGRES_TUPLES_OK) {
+        //Se entrar aqui é porque o save da transaction funfou
+        this->clearResultSet();
+        return true;
+    } else {
+        //Se entrar aqui é porque save da transaction não funfou
+        this->clearResultSet();
+        return false;
+    }
+}
+
+bool VSQL_PGSQL::Connection::commitTransaction() {
     //Tenta dar o commit na transaction
     this->_result_set = PQexec(this->_conn, "commit transaction");
-    
+
     if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
         //Se entrar aqui, o comando de commit deu certo
         this->clearResultSet();
@@ -72,10 +92,11 @@ bool VSQL_PGSQL::Connection::commit() {
     }
 }
 
-bool VSQL_PGSQL::Connection::rollBack() {
+bool VSQL_PGSQL::Connection::rollbackTransaction() {
+
     //Tenta dar o rollback na transaction
     this->_result_set = PQexec(this->_conn, "rollback transaction");
-    
+
     if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
         //Se entrar aqui o rollback aconteceu com sucesso
         this->clearResultSet();
@@ -94,7 +115,7 @@ bool VSQL_PGSQL::Connection::rollBack() {
 bool VSQL_PGSQL::Connection::exec(std::string sql) {
     //Tetnta executar a query
     this->_result_set = PQexec(this->_conn, sql.c_str());
-    
+
     if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
         //Se entrar aqui a query rodou beleza
         this->clearResultSet();
@@ -111,7 +132,7 @@ bool VSQL_PGSQL::Connection::exec(std::string sql) {
 }
 
 VSQL_PGSQL::Statement VSQL_PGSQL::Connection::query(std::string sql) {
-    
+
 }
 
 std::string VSQL_PGSQL::Connection::getErrorMessage() {
