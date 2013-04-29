@@ -36,7 +36,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/vsql_mysql.o \
-	${OBJECTDIR}/vsql_pgsql.o
+	${OBJECTDIR}/vsql_pgsql.o \
+	${OBJECTDIR}/vsql_pgsql_statement.o
 
 
 # C Compiler Flags
@@ -72,6 +73,11 @@ ${OBJECTDIR}/vsql_pgsql.o: vsql_pgsql.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_pgsql.o vsql_pgsql.cpp
+
+${OBJECTDIR}/vsql_pgsql_statement.o: vsql_pgsql_statement.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -lpq -rdynamic -L/usr/lib64/mysql -lmysqlclient -lz -lcrypt -lnsl -lm -lssl -lcrypto -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_pgsql_statement.o vsql_pgsql_statement.cpp
 
 # Subprojects
 .build-subprojects:

@@ -16,6 +16,7 @@
                    projectFiles="true">
       <itemPath>vsql_mysql.cpp</itemPath>
       <itemPath>vsql_pgsql.cpp</itemPath>
+      <itemPath>vsql_pgsql_statement.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -49,6 +50,8 @@
       </item>
       <item path="vsql_pgsql.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="vsql_pgsql_statement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="2">
       <toolsSet>
@@ -76,6 +79,8 @@
       <item path="vsql_pgsql.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="vsql_pgsql.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="vsql_pgsql_statement.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

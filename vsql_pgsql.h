@@ -1,5 +1,5 @@
 /* 
- * File:   query.h
+ * File:   vsql_pgsql.h
  * Author: vitor
  *
  * Created on April 17, 2013, 8:22 PM
@@ -28,6 +28,7 @@ namespace VSQL_PGSQL {
         PGconn * _conn;
         PGresult * _result_set;
     public:
+        Statement(std::string sql);
         void bindParam(int param, void * value, int data_type);
         void bindValue(std::string param, void * value, int data_type);
         bool execute();
@@ -59,11 +60,12 @@ namespace VSQL_PGSQL {
         bool commitTransaction();
         bool rollbackTransaction();
         bool exec(std::string sql);
-        VSQL_PGSQL::Statement query(std::string sql);
+        VSQL_PGSQL::Statement * prepare(std::string sql);
+        VSQL_PGSQL::Statement * query(std::string sql);
         bool closeConnection();
         std::string getErrorMessage();
         std::string getServerVersion();
-        
+
 
     };
 }

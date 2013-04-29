@@ -1,6 +1,4 @@
-
 #include <libpq-fe.h>
-
 #include "vsql_pgsql.h"
 
 VSQL_PGSQL::Connection::Connection(std::string host, std::string user, std::string passwd, std::string dbname, int port) {
@@ -55,7 +53,7 @@ bool VSQL_PGSQL::Connection::beginTransaction() {
 
 bool VSQL_PGSQL::Connection::savePointTransaction(std::string savePointName) {
     char * sql = new char[300];
-    sprintf(sql, "SAVE POINT %s", savePointName.c_str());
+    sprintf(sql, "SAVEPOINT %s", savePointName.c_str());
     this->_result_set = PQexec(this->_conn, sql);
 
     if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
@@ -131,7 +129,13 @@ bool VSQL_PGSQL::Connection::exec(std::string sql) {
     }
 }
 
-VSQL_PGSQL::Statement VSQL_PGSQL::Connection::query(std::string sql) {
+VSQL_PGSQL::Statement * VSQL_PGSQL::Connection::prepare(std::string sql) {
+    VSQL_PGSQL::Statement * stm;
+    stm = new VSQL_PGSQL::Statement(sql);
+    return stm;
+}
+
+VSQL_PGSQL::Statement * VSQL_PGSQL::Connection::query(std::string sql) {
 
 }
 
