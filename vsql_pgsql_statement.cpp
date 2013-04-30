@@ -5,6 +5,6 @@ VSQL_PGSQL::Statement::Statement(std::string sql) {
 }
 
 void VSQL_PGSQL::Statement::bindParam(int param, void* value, int data_type) {
-
+    //Procura pelo parametro param
 }
 
