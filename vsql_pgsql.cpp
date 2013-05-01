@@ -131,12 +131,15 @@ bool VSQL_PGSQL::Connection::exec(std::string sql) {
 
 VSQL_PGSQL::Statement * VSQL_PGSQL::Connection::prepare(std::string sql) {
     VSQL_PGSQL::Statement * stm;
-    stm = new VSQL_PGSQL::Statement(sql);
+    stm = new VSQL_PGSQL::Statement(sql,this->_conn);
     return stm;
 }
 
 VSQL_PGSQL::Statement * VSQL_PGSQL::Connection::query(std::string sql) {
-
+    VSQL_PGSQL::Statement * stm;
+    stm = new VSQL_PGSQL::Statement(sql,this->_conn);
+    stm->execute();
+    return stm;
 }
 
 std::string VSQL_PGSQL::Connection::getErrorMessage() {

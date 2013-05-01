@@ -27,8 +27,9 @@ namespace VSQL_PGSQL {
         std::string _queryString;
         PGconn * _conn;
         PGresult * _result_set;
+        void clearResultSet();
     public:
-        Statement(std::string sql);
+        Statement(std::string sql, PGconn * conn);
         void bindParam(void * value, int data_type);
         void bindValue(std::string param, void * value, int data_type);
         bool execute();
