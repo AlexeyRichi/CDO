@@ -87,7 +87,11 @@ VSQL_PGSQL::ResultSet VSQL_PGSQL::Statement::fetchAll() {
 }
 
 int VSQL_PGSQL::Statement::rowCount() {
+    return this->_total_rows;
+}
 
+int VSQL_PGSQL::Statement::columnCount() {
+    return this->_total_cols;
 }
 
 void VSQL_PGSQL::Statement::clearResultSet() {
