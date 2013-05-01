@@ -20,13 +20,17 @@
 
 namespace VSQL_PGSQL {
     typedef std::map<std::string, std::string> Row;
-    typedef std::map<std::string, Row> ResultSet;
+    typedef std::map<int, Row> ResultSet;
 
     class Statement {
     private:
         std::string _queryString;
         PGconn * _conn;
         PGresult * _result_set;
+        Row _row;
+        ResultSet _result;
+        int _total_rows;
+        int _total_cols;
         void clearResultSet();
     public:
         Statement(std::string sql, PGconn * conn);

@@ -43,21 +43,25 @@ bool VSQL_PGSQL::Statement::execute() {
 
     if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
         //Se entrar aqui a query rodou beleza
-        this->clearResultSet();
         return true;
     } else if (PQresultStatus(this->_result_set) == PGRES_TUPLES_OK) {
         //Se entrar aqui a query rodou beleza
-        this->clearResultSet();
         return true;
     } else {
         //Se entrar aqui  a query não rodou
-        this->clearResultSet();
         return false;
     }
 }
 
 VSQL_PGSQL::Row VSQL_PGSQL::Statement::fetch() {
-
+    int colunas;
+    colunas = PQnfields(this->_result_set);
+    for (int i = 0; i < colunas; i++) {
+        char * nome_coluna = PQfname(this->_result_set, i);
+        this->_row[nome_coluna] = PQgetvalue(this->_result_set, 0, i);
+    }
+    this->clearResultSet();
+    return this->_row;
 }
 
 void* VSQL_PGSQL::Statement::fetchObject() {
@@ -65,7 +69,21 @@ void* VSQL_PGSQL::Statement::fetchObject() {
 }
 
 VSQL_PGSQL::ResultSet VSQL_PGSQL::Statement::fetchAll() {
+    int linhas, colunas;
+    linhas = PQntuples(this->_result_set);
+    colunas = PQnfields(this->_result_set);
 
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            char * nome_coluna = PQfname(this->_result_set, j);
+            this->_row[nome_coluna] = PQgetvalue(this->_result_set, i, j);
+        }
+        this->_result[i] = this->_row;
+    }
+    this->_total_rows = linhas;
+    this->_total_cols = colunas;
+    this->clearResultSet();
+    return this->_result;
 }
 
 int VSQL_PGSQL::Statement::rowCount() {
