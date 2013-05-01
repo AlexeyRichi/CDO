@@ -7,9 +7,9 @@
 
 #ifndef VSQL_CONNECTION_PGSQL_H
 #define	VSQL_CONNECTION_PGSQL_H
-#define PARAM_STR 1;
-#define PARAM_INT 2;
-#define PARAM_FLOAT 3;
+#define PARAM_STR 1
+#define PARAM_INT 2
+#define PARAM_FLOAT 3
 #include <cstdio>
 #include <cstdlib>
 #include <sstream>
@@ -29,7 +29,7 @@ namespace VSQL_PGSQL {
         PGresult * _result_set;
     public:
         Statement(std::string sql);
-        void bindParam(int param, void * value, int data_type);
+        void bindParam(void * value, int data_type);
         void bindValue(std::string param, void * value, int data_type);
         bool execute();
         Row fetch();
