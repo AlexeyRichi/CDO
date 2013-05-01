@@ -39,7 +39,6 @@ namespace VSQL_PGSQL {
         bool execute();
         Row fetch();
         ResultSet fetchAll();
-        void * fetchObject();
         int rowCount();
         int columnCount();
     };

@@ -60,12 +60,10 @@ VSQL_PGSQL::Row VSQL_PGSQL::Statement::fetch() {
         char * nome_coluna = PQfname(this->_result_set, i);
         this->_row[nome_coluna] = PQgetvalue(this->_result_set, 0, i);
     }
+    this->_total_rows = 1;
+    this->_total_cols = colunas;
     this->clearResultSet();
     return this->_row;
-}
-
-void* VSQL_PGSQL::Statement::fetchObject() {
-
 }
 
 VSQL_PGSQL::ResultSet VSQL_PGSQL::Statement::fetchAll() {
