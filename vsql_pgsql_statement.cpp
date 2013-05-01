@@ -10,7 +10,7 @@ void VSQL_PGSQL::Statement::bindParam(void* value, int data_type) {
     if (data_type == PARAM_INT) {
         sprintf(dado,"%d",*((int *) value));
     } else if (data_type == PARAM_FLOAT) {
-        sprintf(dado,"%f",*((float *) value));
+        sprintf(dado,"%.2f",*((float *) value));
     } else if (data_type == PARAM_STR) {
         sprintf(dado,"'%s'",(char *) value);
     }
