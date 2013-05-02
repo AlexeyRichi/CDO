@@ -1,5 +1,4 @@
 #include "vsql_pgsql.h"
-#include <libpq-fe.h>
 #include <boost/algorithm/string.hpp>
 
 VSQL_PGSQL::Statement::Statement(std::string sql, PGconn * conn) {
