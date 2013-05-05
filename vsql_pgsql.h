@@ -70,8 +70,6 @@ namespace VSQL_PGSQL {
         bool closeConnection();
         std::string getErrorMessage();
         std::string getServerVersion();
-
-
     };
 }
 

@@ -115,6 +115,7 @@ bool VSQL_PGSQL::Connection::rollbackTransaction(std::string savepoint) {
     //Tenta dar o rollback na transaction
     char * sql = new char[100];
     sprintf(sql, "rollback %s", savepoint.c_str());
+    
     this->_result_set = PQexec(this->_conn, sql);
 
     if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
