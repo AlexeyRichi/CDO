@@ -39,8 +39,10 @@ void VSQL_MYSQL::Statement::bindValue(std::string param, void* value, int data_t
 bool VSQL_MYSQL::Statement::execute() {
     //Tenta executar a query
     if (!mysql_query(this->_conn,this->_queryString.c_str())) {
+        this->_total_rows = (int) mysql_affected_rows(this->_conn);
         return true;
     } else {
+        this->_total_rows = 0;
         return false;
     }
 }
