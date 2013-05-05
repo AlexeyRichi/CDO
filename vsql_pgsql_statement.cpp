@@ -41,8 +41,10 @@ bool VSQL_PGSQL::Statement::execute() {
     this->_result_set = PQexec(this->_conn, this->_queryString.c_str());
 
     if (PQresultStatus(this->_result_set) != PGRES_COMMAND_OK) {
+        this->_total_rows = 0;
         return false;
     } else if (PQresultStatus(this->_result_set) != PGRES_TUPLES_OK) {
+        this->_total_rows = 0;
         return false;
     }
     this->_total_rows = PQntuples(this->_result_set);
