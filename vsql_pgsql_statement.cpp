@@ -40,16 +40,13 @@ bool VSQL_PGSQL::Statement::execute() {
     //Tenta executar a query
     this->_result_set = PQexec(this->_conn, this->_queryString.c_str());
 
-    if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
-        //Se entrar aqui a query rodou beleza
-        return true;
-    } else if (PQresultStatus(this->_result_set) == PGRES_TUPLES_OK) {
-        //Se entrar aqui a query rodou beleza
-        return true;
-    } else {
-        //Se entrar aqui  a query não rodou
+    if (PQresultStatus(this->_result_set) != PGRES_COMMAND_OK) {
+        return false;
+    } else if (PQresultStatus(this->_result_set) != PGRES_TUPLES_OK) {
         return false;
     }
+    this->_total_rows = PQntuples(this->_result_set);
+    return true;
 }
 
 VSQL_PGSQL::Row VSQL_PGSQL::Statement::fetch() {
