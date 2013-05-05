@@ -110,6 +110,28 @@ bool VSQL_PGSQL::Connection::rollbackTransaction() {
     }
 }
 
+bool VSQL_PGSQL::Connection::rollbackTransaction(std::string savepoint) {
+
+    //Tenta dar o rollback na transaction
+    char * sql = new char[100];
+    sprintf(sql, "rollback %s", savepoint.c_str());
+    this->_result_set = PQexec(this->_conn, sql);
+
+    if (PQresultStatus(this->_result_set) == PGRES_COMMAND_OK) {
+        //Se entrar aqui o rollback aconteceu com sucesso
+        this->clearResultSet();
+        return true;
+    } else if (PQresultStatus(this->_result_set) == PGRES_TUPLES_OK) {
+        //Se entrar aqui o rollback aconteceu com sucesso
+        this->clearResultSet();
+        return true;
+    } else {
+        //Se entrar aqui o rollback falhou miseravelmente.
+        this->clearResultSet();
+        return false;
+    }
+}
+
 bool VSQL_PGSQL::Connection::exec(std::string sql) {
     //Tetnta executar a query
     this->_result_set = PQexec(this->_conn, sql.c_str());
@@ -131,13 +153,13 @@ bool VSQL_PGSQL::Connection::exec(std::string sql) {
 
 VSQL_PGSQL::Statement * VSQL_PGSQL::Connection::prepare(std::string sql) {
     VSQL_PGSQL::Statement * stm;
-    stm = new VSQL_PGSQL::Statement(sql,this->_conn);
+    stm = new VSQL_PGSQL::Statement(sql, this->_conn);
     return stm;
 }
 
 VSQL_PGSQL::Statement * VSQL_PGSQL::Connection::query(std::string sql) {
     VSQL_PGSQL::Statement * stm;
-    stm = new VSQL_PGSQL::Statement(sql,this->_conn);
+    stm = new VSQL_PGSQL::Statement(sql, this->_conn);
     stm->execute();
     return stm;
 }

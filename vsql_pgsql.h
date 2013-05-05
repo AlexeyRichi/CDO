@@ -63,6 +63,7 @@ namespace VSQL_PGSQL {
         bool savePointTransaction(std::string savePointName);
         bool commitTransaction();
         bool rollbackTransaction();
+        bool rollbackTransaction(std::string savepoint);
         bool exec(std::string sql);
         VSQL_PGSQL::Statement * prepare(std::string sql);
         VSQL_PGSQL::Statement * query(std::string sql);
