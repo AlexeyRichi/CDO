@@ -63,6 +63,7 @@ namespace VSQL_MYSQL {
         bool savePointTransaction(std::string savePointName);
         bool commitTransaction();
         bool rollbackTransaction();
+        bool rollbackTransaction(std::string savepoint);
         bool exec(std::string sql);
         VSQL_MYSQL::Statement * prepare(std::string sql);
         VSQL_MYSQL::Statement * query(std::string sql);
