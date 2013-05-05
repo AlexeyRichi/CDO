@@ -62,7 +62,7 @@ bool VSQL_MYSQL::Connection::savePointTransaction(std::string savePointName) {
 }
 
 bool VSQL_MYSQL::Connection::commitTransaction() {
-        if (mysql_query(this->_conn, "COMMIT;")) {
+    if (mysql_query(this->_conn, "COMMIT;")) {
         this->_error_message.clear();
         this->_error_message.append(mysql_error(this->_conn));
         return false;
@@ -73,7 +73,7 @@ bool VSQL_MYSQL::Connection::commitTransaction() {
 }
 
 bool VSQL_MYSQL::Connection::rollbackTransaction() {
-    
+
     if (mysql_query(this->_conn, "ROLLBACK;")) {
         this->_error_message.clear();
         this->_error_message.append(mysql_error(this->_conn));
@@ -98,7 +98,30 @@ bool VSQL_MYSQL::Connection::rollbackTransaction(std::string savepoint) {
 }
 
 bool VSQL_MYSQL::Connection::exec(std::string sql) {
+    if (mysql_query(this->_conn, sql.c_str())) {
+        this->_error_message.clear();
+        this->_error_message.append(mysql_error(this->_conn));
+        return false;
+    } else {
+        return true;
+    }
+}
 
+VSQL_MYSQL::Statement * VSQL_MYSQL::Connection::prepare(std::string sql) {
+    VSQL_MYSQL::Statement * stm;
+    stm = new VSQL_MYSQL::Statement(sql, this->_conn);
+    return stm;
+}
+
+VSQL_MYSQL::Statement * VSQL_MYSQL::Connection::query(std::string sql) {
+    VSQL_MYSQL::Statement * stm;
+    stm = new VSQL_MYSQL::Statement(sql, this->_conn);
+    stm->execute();
+    return stm;
+}
+
+std::string VSQL_MYSQL::Connection::getErrorMessage() {
+    return this->_error_message;
 }
 
 bool VSQL_MYSQL::Connection::closeConnection() {

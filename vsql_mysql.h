@@ -69,7 +69,6 @@ namespace VSQL_MYSQL {
         VSQL_MYSQL::Statement * query(std::string sql);
         bool closeConnection();
         std::string getErrorMessage();
-        std::string getServerVersion();
     };
 }
 
