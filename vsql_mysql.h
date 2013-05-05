@@ -29,6 +29,7 @@ namespace VSQL_MYSQL {
         MYSQL * _conn;
         MYSQL_RES * _result_set;
         MYSQL_ROW _mysql_row;
+        MYSQL_FIELD * _field;
         Row _row;
         ResultSet _result;
         int _total_rows;

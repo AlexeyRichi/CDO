@@ -38,13 +38,25 @@ void VSQL_MYSQL::Statement::bindValue(std::string param, void* value, int data_t
 
 bool VSQL_MYSQL::Statement::execute() {
     //Tenta executar a query
-    if (!mysql_query(this->_conn,this->_queryString.c_str())) {
+    if (!mysql_query(this->_conn, this->_queryString.c_str())) {
         this->_total_rows = (int) mysql_affected_rows(this->_conn);
+        this->_result_set = mysql_use_result(this->_conn);
         return true;
     } else {
         this->_total_rows = 0;
         return false;
     }
+}
+
+VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
+    this->_result_set = mysql_store_result(this->_conn);
+    this->_field = mysql_fetch_field(this->_result_set);
+    printf("Really?\n");
+    return this->_row;
+}
+
+VSQL_MYSQL::ResultSet VSQL_MYSQL::Statement::fetchAll() {
+
 }
 
 int VSQL_MYSQL::Statement::rowCount() {
@@ -56,5 +68,5 @@ int VSQL_MYSQL::Statement::columnCount() {
 }
 
 void VSQL_MYSQL::Statement::clearResultSet() {
-    //Limpa o resultset
+    mysql_free_result(this->_result_set);
 }
