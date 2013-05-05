@@ -84,6 +84,19 @@ bool VSQL_MYSQL::Connection::rollbackTransaction() {
 
 }
 
+bool VSQL_MYSQL::Connection::rollbackTransaction(std::string savepoint) {
+    char * sql = new char[100];
+    sprintf(sql, "rollback %s", savepoint.c_str());
+    if (mysql_query(this->_conn, sql)) {
+        this->_error_message.clear();
+        this->_error_message.append(mysql_error(this->_conn));
+        return false;
+    } else {
+        return true;
+    }
+
+}
+
 bool VSQL_MYSQL::Connection::exec(std::string sql) {
 
 }
