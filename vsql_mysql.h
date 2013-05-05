@@ -7,6 +7,9 @@
 
 #ifndef VSQL_CONNECTION_MYSQL_H
 #define	VSQL_CONNECTION_MYSQL_H
+#define PARAM_STR 1
+#define PARAM_INT 2
+#define PARAM_FLOAT 3
 #include <cstdio>
 #include <cstdlib>
 #include <sstream>

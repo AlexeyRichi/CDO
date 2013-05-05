@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/vsql_mysql_connection.o \
+	${OBJECTDIR}/vsql_mysql_statement.o \
 	${OBJECTDIR}/vsql_pgsql_connection.o \
 	${OBJECTDIR}/vsql_pgsql_statement.o
 
@@ -68,6 +69,11 @@ ${OBJECTDIR}/vsql_mysql_connection.o: vsql_mysql_connection.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_mysql_connection.o vsql_mysql_connection.cpp
+
+${OBJECTDIR}/vsql_mysql_statement.o: vsql_mysql_statement.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_mysql_statement.o vsql_mysql_statement.cpp
 
 ${OBJECTDIR}/vsql_pgsql_connection.o: vsql_pgsql_connection.cpp 
 	${MKDIR} -p ${OBJECTDIR}

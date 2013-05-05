@@ -15,6 +15,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>vsql_mysql_connection.cpp</itemPath>
+      <itemPath>vsql_mysql_statement.cpp</itemPath>
       <itemPath>vsql_pgsql_connection.cpp</itemPath>
       <itemPath>vsql_pgsql_statement.cpp</itemPath>
     </logicalFolder>
@@ -48,6 +49,8 @@
       </item>
       <item path="vsql_mysql_connection.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="vsql_mysql_statement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="vsql_pgsql.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_pgsql_connection.cpp" ex="false" tool="1" flavor2="0">
@@ -79,6 +82,8 @@
       <item path="vsql_mysql.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_mysql_connection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="vsql_mysql_statement.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="vsql_pgsql.h" ex="false" tool="3" flavor2="0">
       </item>
