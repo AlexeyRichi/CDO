@@ -28,6 +28,7 @@ namespace VSQL_MYSQL {
         std::string _queryString;
         MYSQL * _conn;
         MYSQL_RES * _result_set;
+        MYSQL_RES * _result_fields;
         MYSQL_ROW _mysql_row;
         MYSQL_FIELD * _field;
         Row _row;

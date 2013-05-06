@@ -40,7 +40,7 @@ bool VSQL_MYSQL::Statement::execute() {
     //Tenta executar a query
     if (!mysql_query(this->_conn, this->_queryString.c_str())) {
         this->_total_rows = (int) mysql_affected_rows(this->_conn);
-        this->_result_set = mysql_use_result(this->_conn);
+        this->_result_set = mysql_store_result(this->_conn);
         return true;
     } else {
         this->_total_rows = 0;
@@ -49,9 +49,37 @@ bool VSQL_MYSQL::Statement::execute() {
 }
 
 VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
-    this->_result_set = mysql_store_result(this->_conn);
-    this->_field = mysql_fetch_field(this->_result_set);
-    printf("Really?\n");
+
+    int index_from, index_where;
+    index_from = this->_queryString.find("from", 0, 1);
+    index_where = this->_queryString.find("where", 0, 1);
+
+    if (index_from == -1) {
+        index_from = this->_queryString.find("FROM", 0, 1) + 4;
+    } else {
+        index_from = index_from + 5;
+    }
+
+    if (index_where == -1) {
+        index_where = this->_queryString.find("where", 0, 1);
+    }
+
+    std::string table_name;
+    if (index_where = ! -1) {
+        table_name = this->_queryString.substr(index_from, index_where - index_from);
+    } else {
+        table_name = this->_queryString.substr(index_from);
+    }
+    
+    printf("Table name: %s",table_name.c_str());
+    printf("Length: %d",table_name.size());
+
+
+
+    //this->_result_set = mysql_list_fields(this->_conn,this->_result_set->,NULL);
+    //this->_field = mysql_fetch_field(this->_result_set);
+    //printf("Really? %s\n",this->_field->table);
+    //printf("Really? %s\n",this->_field->name);
     return this->_row;
 }
 
