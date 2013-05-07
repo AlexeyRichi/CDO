@@ -1,5 +1,6 @@
 #include "vsql_mysql.h"
 #include <boost/algorithm/string.hpp>
+#include <mysql/mysql.h>
 
 VSQL_MYSQL::Statement::Statement(std::string sql, MYSQL* conn) {
     this->_queryString.append(sql);
@@ -40,7 +41,7 @@ bool VSQL_MYSQL::Statement::execute() {
     //Tenta executar a query
     if (!mysql_query(this->_conn, this->_queryString.c_str())) {
         this->_total_rows = (int) mysql_affected_rows(this->_conn);
-        this->_result_set = mysql_store_result(this->_conn);
+        this->_result_set = mysql_use_result(this->_conn);
         return true;
     } else {
         this->_total_rows = 0;
@@ -50,36 +51,17 @@ bool VSQL_MYSQL::Statement::execute() {
 
 VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
 
-    int index_from, index_where;
-    index_from = this->_queryString.find("from", 0, 1);
-    index_where = this->_queryString.find("where", 0, 1);
+    this->_field = mysql_fetch_field(this->_result_set);
 
-    if (index_from == -1) {
-        index_from = this->_queryString.find("FROM", 0, 1) + 4;
-    } else {
-        index_from = index_from + 5;
+    this->_total_rows = (int) this->_result_set->row_count;
+    this->_total_cols = this->_result_set->field_count;
+
+    printf("Total Rows: %d\n", this->_total_rows);
+
+    while (this->_mysql_row = mysql_fetch_row(this->_result_set)) {
+        printf("valor: %s\n", this->_mysql_row[0]);
     }
 
-    if (index_where == -1) {
-        index_where = this->_queryString.find("where", 0, 1);
-    }
-
-    std::string table_name;
-    if (index_where = ! -1) {
-        table_name = this->_queryString.substr(index_from, index_where - index_from);
-    } else {
-        table_name = this->_queryString.substr(index_from);
-    }
-    
-    printf("Table name: %s",table_name.c_str());
-    printf("Length: %d",table_name.size());
-
-
-
-    //this->_result_set = mysql_list_fields(this->_conn,this->_result_set->,NULL);
-    //this->_field = mysql_fetch_field(this->_result_set);
-    //printf("Really? %s\n",this->_field->table);
-    //printf("Really? %s\n",this->_field->name);
     return this->_row;
 }
 
