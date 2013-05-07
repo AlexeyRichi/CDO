@@ -55,7 +55,7 @@ VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
 
     this->_total_rows = (int) this->_result_set->row_count;
     this->_total_cols = this->_result_set->field_count;
-
+    int columns = this->_total_cols;
     printf("Total Rows: %d\n", this->_total_rows);
 
     while (this->_mysql_row = mysql_fetch_row(this->_result_set)) {
