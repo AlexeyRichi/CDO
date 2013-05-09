@@ -21,7 +21,7 @@
 namespace VSQL_MYSQL {
 
     typedef std::map<std::string, std::string> Row;
-    typedef std::map<std::string, Row> ResultSet;
+    typedef std::map<int, Row> ResultSet;
 
      class Statement {
     private:

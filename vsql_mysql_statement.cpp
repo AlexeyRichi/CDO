@@ -68,7 +68,26 @@ VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
 }
 
 VSQL_MYSQL::ResultSet VSQL_MYSQL::Statement::fetchAll() {
+    this->_field = mysql_fetch_field(this->_result_set);
 
+    this->_total_rows = (int) this->_result_set->row_count;
+    this->_total_cols = this->_result_set->field_count;
+
+    int i,total;
+    total = 0;
+    std::string column;
+    while (this->_mysql_row = mysql_fetch_row(this->_result_set)) {
+        for (i = 0; i < this->_total_cols; i++) {
+            column.append(this->_field->name);
+            this->_row[column] = this->_mysql_row[i];
+            this->_field++;
+            column.clear();
+        }
+        this->_result[total] = this->_row;
+        this->_row.clear();
+        total++;
+    }
+    return this->_result;
 }
 
 int VSQL_MYSQL::Statement::rowCount() {
