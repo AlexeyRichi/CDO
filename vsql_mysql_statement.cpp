@@ -54,12 +54,15 @@ VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
 
     this->_total_rows = (int) this->_result_set->row_count;
     this->_total_cols = this->_result_set->field_count;
-    
+
     this->_mysql_row = mysql_fetch_row(this->_result_set);
     int i;
+    std::string column;
     for (i = 0; i < this->_total_cols; i++) {
-        printf("%s: %s\n", this->_field->name, this->_mysql_row[i]);
+        column.append(this->_field->name);
+        this->_row[column] = this->_mysql_row[i];
         this->_field++;
+        column.clear();
     }
     return this->_row;
 }

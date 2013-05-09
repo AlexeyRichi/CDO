@@ -20,7 +20,7 @@
 
 namespace VSQL_MYSQL {
 
-    typedef std::vector<std::string> Row;
+    typedef std::map<std::string, std::string> Row;
     typedef std::map<std::string, Row> ResultSet;
 
      class Statement {
