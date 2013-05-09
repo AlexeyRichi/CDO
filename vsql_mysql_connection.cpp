@@ -117,7 +117,6 @@ VSQL_MYSQL::Statement * VSQL_MYSQL::Connection::query(std::string sql) {
     VSQL_MYSQL::Statement * stm;
     stm = new VSQL_MYSQL::Statement(sql, this->_conn);
     stm->execute();
-    stm->fetch();
     return stm;
 }
 

@@ -1,6 +1,5 @@
 #include "vsql_mysql.h"
 #include <boost/algorithm/string.hpp>
-#include <mysql/mysql.h>
 
 VSQL_MYSQL::Statement::Statement(std::string sql, MYSQL* conn) {
     this->_queryString.append(sql);
@@ -55,13 +54,13 @@ VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
 
     this->_total_rows = (int) this->_result_set->row_count;
     this->_total_cols = this->_result_set->field_count;
-    int columns = this->_total_cols;
-    printf("Total Rows: %d\n", this->_total_rows);
-
-    while (this->_mysql_row = mysql_fetch_row(this->_result_set)) {
-        printf("valor: %s\n", this->_mysql_row[0]);
+    
+    this->_mysql_row = mysql_fetch_row(this->_result_set);
+    int i;
+    for (i = 0; i < this->_total_cols; i++) {
+        printf("%s: %s\n", this->_field->name, this->_mysql_row[i]);
+        this->_field++;
     }
-
     return this->_row;
 }
 
