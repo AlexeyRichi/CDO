@@ -24,7 +24,7 @@ namespace VSQL_SQLITE {
     private:
         std::string _queryString;
         sqlite3 * _conn;
-        sqlite3_pcache * _result_set;
+        sqlite3_stmt * _result_set;
         Row _row;
         ResultSet _result;
         int _total_rows;
@@ -43,19 +43,15 @@ namespace VSQL_SQLITE {
 
     class Connection {
     private:
-        std::string _host;
-        std::string _user;
-        std::string _passwd;
-        std::string _dbname;
-        int _port;
+        std::string _filename;
         bool _in_transaction;
         sqlite3 * _conn;
-        sqlite3_pcache * _result_set;
+        sqlite3_stmt * _result_set;
         std::string _error_message;
         void clearResultSet();
 
     public:
-        Connection(std::string host, std::string user, std::string passwd, std::string dbname, int port);
+        Connection(std::string filename);
         bool openConnection();
         bool beginTransaction();
         bool savePointTransaction(std::string savePointName);
