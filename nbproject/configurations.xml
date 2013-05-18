@@ -18,6 +18,7 @@
       <itemPath>vsql_mysql_statement.cpp</itemPath>
       <itemPath>vsql_pgsql_connection.cpp</itemPath>
       <itemPath>vsql_pgsql_statement.cpp</itemPath>
+      <itemPath>vsql_sqlite_connection.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -37,6 +38,8 @@
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <ccTool>
@@ -55,11 +58,15 @@
       </item>
       <item path="vsql_pgsql_statement.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="vsql_sqlite_connection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="2">
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <cTool>
@@ -86,6 +93,8 @@
       <item path="vsql_pgsql_connection.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="vsql_pgsql_statement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="vsql_sqlite_connection.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

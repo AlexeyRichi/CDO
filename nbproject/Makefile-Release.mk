@@ -38,7 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/vsql_mysql_connection.o \
 	${OBJECTDIR}/vsql_mysql_statement.o \
 	${OBJECTDIR}/vsql_pgsql_connection.o \
-	${OBJECTDIR}/vsql_pgsql_statement.o
+	${OBJECTDIR}/vsql_pgsql_statement.o \
+	${OBJECTDIR}/vsql_sqlite_connection.o
 
 
 # C Compiler Flags
@@ -84,6 +85,11 @@ ${OBJECTDIR}/vsql_pgsql_statement.o: vsql_pgsql_statement.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_pgsql_statement.o vsql_pgsql_statement.cpp
+
+${OBJECTDIR}/vsql_sqlite_connection.o: vsql_sqlite_connection.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_sqlite_connection.o vsql_sqlite_connection.cpp
 
 # Subprojects
 .build-subprojects:

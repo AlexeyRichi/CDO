@@ -24,14 +24,14 @@ namespace VSQL_SQLITE {
     private:
         std::string _queryString;
         sqlite3 * _conn;
-        PGresult * _result_set;
+        sqlite3_pcache * _result_set;
         Row _row;
         ResultSet _result;
         int _total_rows;
         int _total_cols;
         void clearResultSet();
     public:
-        Statement(std::string sql, PGconn * conn);
+        Statement(std::string sql, sqlite3 * conn);
         void bindParam(void * value, int data_type);
         void bindValue(std::string param, void * value, int data_type);
         bool execute();
@@ -49,8 +49,8 @@ namespace VSQL_SQLITE {
         std::string _dbname;
         int _port;
         bool _in_transaction;
-        PGconn * _conn;
-        PGresult * _result_set;
+        sqlite3 * _conn;
+        sqlite3_pcache * _result_set;
         std::string _error_message;
         void clearResultSet();
 
@@ -63,8 +63,8 @@ namespace VSQL_SQLITE {
         bool rollbackTransaction();
         bool rollbackTransaction(std::string savepoint);
         bool exec(std::string sql);
-        VSQL_PGSQL::Statement * prepare(std::string sql);
-        VSQL_PGSQL::Statement * query(std::string sql);
+        VSQL_SQLITE::Statement * prepare(std::string sql);
+        VSQL_SQLITE::Statement * query(std::string sql);
         bool closeConnection();
         std::string getErrorMessage();
         std::string getServerVersion();
