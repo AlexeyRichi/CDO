@@ -62,8 +62,7 @@ namespace VSQL_SQLITE {
         VSQL_SQLITE::Statement * prepare(std::string sql);
         VSQL_SQLITE::Statement * query(std::string sql);
         bool closeConnection();
-        std::string getErrorMessage();
-        std::string getServerVersion();
+        char * getErrorMessage();
     };
 }
 
