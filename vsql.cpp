@@ -1,5 +1,15 @@
 #include "vsql.h"
 
+void set_database_type(int type) {
+    if (type == PGSQL) {
+        using namespace VSQL_PGSQL;
+    } else if (type == MYSQL) {
+        using namespace VSQL_MYSQL;
+    } else if (type == SQLITE) {
+        using namespace VSQL_SQLITE;
+    }
+}
+
 void free_conn(VSQL_MYSQL::Connection* conn) {
     delete(conn);
 }

@@ -47,7 +47,7 @@ namespace VSQL_SQLITE {
         bool _in_transaction;
         sqlite3 * _conn;
         sqlite3_stmt * _result_set;
-        std::string _error_message;
+        char * _error_message;
         void clearResultSet();
 
     public:
