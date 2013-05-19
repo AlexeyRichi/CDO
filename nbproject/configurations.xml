@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>vsql_mysql.h</itemPath>
       <itemPath>vsql_pgsql.h</itemPath>
+      <itemPath>vsql_sqlite.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -93,6 +94,8 @@
       <item path="vsql_pgsql_connection.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="vsql_pgsql_statement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="vsql_sqlite.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_sqlite_connection.cpp" ex="false" tool="1" flavor2="0">
       </item>
