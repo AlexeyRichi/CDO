@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+                   <itemPath>vsql.h</itemPath>
       <itemPath>vsql_mysql.h</itemPath>
       <itemPath>vsql_pgsql.h</itemPath>
       <itemPath>vsql_sqlite.h</itemPath>
@@ -15,6 +16,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>vsql.cpp</itemPath>
       <itemPath>vsql_mysql_connection.cpp</itemPath>
       <itemPath>vsql_mysql_statement.cpp</itemPath>
       <itemPath>vsql_pgsql_connection.cpp</itemPath>
@@ -32,6 +34,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>vsql.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -47,6 +50,10 @@
           <commandLine>-lpq -O -I/usr/include/mysql -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv -fPIC -fPIC -g -static-libgcc -fno-omit-frame-pointer -fno-strict-aliasing -DMY_PTHREAD_FASTMUTEX=1 -L/usr/lib64/mysql -lmysqlclient -lpthread -lz -lm -lrt -lssl -lcrypto -ldl -lsqlite3</commandLine>
         </ccTool>
       </compileType>
+      <item path="vsql.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="vsql.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="vsql_mysql.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_mysql_connection.cpp" ex="false" tool="1" flavor2="0">
@@ -83,6 +90,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="vsql.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="vsql.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="vsql_mysql.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_mysql_connection.cpp" ex="false" tool="1" flavor2="0">
