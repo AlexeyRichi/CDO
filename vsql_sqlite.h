@@ -7,6 +7,9 @@
 
 #ifndef VSQL_SQLITE_H
 #define	VSQL_SQLITE_H
+#define PARAM_STR 1
+#define PARAM_INT 2
+#define PARAM_FLOAT 3
 #include <sqlite3.h>
 #include <cstdio>
 #include <cstdlib>
