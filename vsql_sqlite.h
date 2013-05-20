@@ -32,6 +32,7 @@ namespace VSQL_SQLITE {
         ResultSet _result;
         int _total_rows;
         int _total_cols;
+        char * _error_message;
         void clearResultSet();
     public:
         Statement(std::string sql, sqlite3 * conn);

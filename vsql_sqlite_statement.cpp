@@ -1,3 +1,6 @@
+
+#include <sqlite3.h>
+
 #include "vsql_sqlite.h"
 #include <boost/algorithm/string.hpp>
 
@@ -34,6 +37,17 @@ void VSQL_SQLITE::Statement::bindValue(std::string param, void* value, int data_
 
     boost::replace_first(this->_queryString, param, valor);
     delete(valor);
+}
+
+bool VSQL_SQLITE::Statement::execute() {
+    int retorno = sqlite3_prepare(this->_conn,this->_queryString.c_str(),-1,&this->_result_set,0);
+
+    if (retorno == SQLITE_OK) {
+        printf("Rodou belezinha\n");
+    } else {
+        printf("Fudeu!\n");
+    }
+    
 }
 
 int VSQL_SQLITE::Statement::rowCount() {
