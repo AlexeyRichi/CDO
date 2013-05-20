@@ -40,7 +40,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/vsql_mysql_statement.o \
 	${OBJECTDIR}/vsql_pgsql_connection.o \
 	${OBJECTDIR}/vsql_pgsql_statement.o \
-	${OBJECTDIR}/vsql_sqlite_connection.o
+	${OBJECTDIR}/vsql_sqlite_connection.o \
+	${OBJECTDIR}/vsql_sqlite_statement.o
 
 
 # C Compiler Flags
@@ -96,6 +97,11 @@ ${OBJECTDIR}/vsql_sqlite_connection.o: vsql_sqlite_connection.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -lpq -O -I/usr/include/mysql -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv -fPIC -fPIC -g -static-libgcc -fno-omit-frame-pointer -fno-strict-aliasing -DMY_PTHREAD_FASTMUTEX=1 -L/usr/lib64/mysql -lmysqlclient -lpthread -lz -lm -lrt -lssl -lcrypto -ldl -lsqlite3 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_sqlite_connection.o vsql_sqlite_connection.cpp
+
+${OBJECTDIR}/vsql_sqlite_statement.o: vsql_sqlite_statement.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -lpq -O -I/usr/include/mysql -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv -fPIC -fPIC -g -static-libgcc -fno-omit-frame-pointer -fno-strict-aliasing -DMY_PTHREAD_FASTMUTEX=1 -L/usr/lib64/mysql -lmysqlclient -lpthread -lz -lm -lrt -lssl -lcrypto -ldl -lsqlite3 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_sqlite_statement.o vsql_sqlite_statement.cpp
 
 # Subprojects
 .build-subprojects:

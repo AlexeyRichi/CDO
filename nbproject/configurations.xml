@@ -4,7 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-                   <itemPath>vsql.h</itemPath>
+      <itemPath>vsql.h</itemPath>
       <itemPath>vsql_mysql.h</itemPath>
       <itemPath>vsql_pgsql.h</itemPath>
       <itemPath>vsql_sqlite.h</itemPath>
@@ -22,6 +22,7 @@
       <itemPath>vsql_pgsql_connection.cpp</itemPath>
       <itemPath>vsql_pgsql_statement.cpp</itemPath>
       <itemPath>vsql_sqlite_connection.cpp</itemPath>
+      <itemPath>vsql_sqlite_statement.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -34,7 +35,6 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>vsql.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -42,8 +42,6 @@
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>default</compilerSet>
-        <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <ccTool>
@@ -68,13 +66,13 @@
       </item>
       <item path="vsql_sqlite_connection.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="vsql_sqlite_statement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="2">
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>default</compilerSet>
-        <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <cTool>
@@ -109,6 +107,8 @@
       <item path="vsql_sqlite.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="vsql_sqlite_connection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="vsql_sqlite_statement.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>
