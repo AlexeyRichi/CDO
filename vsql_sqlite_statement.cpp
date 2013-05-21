@@ -52,21 +52,48 @@ bool VSQL_SQLITE::Statement::execute() {
 }
 
 VSQL_SQLITE::Row VSQL_SQLITE::Statement::fetch() {
-
+    std::string nome_coluna;
     if (this->_total_rows == 0) {
         sqlite3_reset(this->_result_set);
         int i = 0;
-        //Se entrar aqui, a ultima query executa foi realmente um select
-        while (sqlite3_step(this->_result_set) == SQLITE_ROW) {
-            i++;
+        this->_total_cols = sqlite3_column_count(this->_result_set);
+        sqlite3_step(this->_result_set);
+        while (i<1) {
+            for (i = 0; i<this->_total_cols; i++) {
+                nome_coluna.append(sqlite3_column_name(this->_result_set, i));
+                this->_row[nome_coluna].append((const char *) sqlite3_column_text(this->_result_set, i));
+                nome_coluna.clear();
+            }
         }
-        printf("Total de Linhas: %d\n", i);
     }
+    this->clearResultSet();
     return this->_row;
 }
 
 VSQL_SQLITE::ResultSet VSQL_SQLITE::Statement::fetchAll() {
-
+    std::string nome_coluna;
+    int linhas = 0;
+    if (this->_total_rows == 0) {
+        sqlite3_reset(this->_result_set);
+        int i = 0;
+        this->_total_cols = sqlite3_column_count(this->_result_set);
+        
+        while (sqlite3_step(this->_result_set) == SQLITE_ROW) {
+            for (i = 0; i<this->_total_cols; i++) {
+                nome_coluna.append(sqlite3_column_name(this->_result_set, i));
+                this->_row[nome_coluna].append((const char *) sqlite3_column_text(this->_result_set, i));
+                nome_coluna.clear();
+            }
+            this->_result[linhas] = this->_row;
+            linhas++;
+            //Limpa a row
+            this->_row.clear();
+        }
+    }
+    //Totaliza as linhas afetadas
+    this->_total_rows = linhas;
+    this->clearResultSet();
+    return this->_result;
 }
 
 int VSQL_SQLITE::Statement::rowCount() {
