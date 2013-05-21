@@ -51,7 +51,7 @@ bool VSQL_PGSQL::Statement::execute() {
     return true;
 }
 
-VSQL_PGSQL::Row VSQL_PGSQL::Statement::fetch() {
+Row VSQL_PGSQL::Statement::fetch() {
     int colunas;
     colunas = PQnfields(this->_result_set);
     for (int i = 0; i < colunas; i++) {
@@ -64,7 +64,7 @@ VSQL_PGSQL::Row VSQL_PGSQL::Statement::fetch() {
     return this->_row;
 }
 
-VSQL_PGSQL::ResultSet VSQL_PGSQL::Statement::fetchAll() {
+ResultSet VSQL_PGSQL::Statement::fetchAll() {
     int linhas, colunas;
     linhas = PQntuples(this->_result_set);
     colunas = PQnfields(this->_result_set);

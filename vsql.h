@@ -10,6 +10,7 @@
 #include "vsql_mysql.h"
 #include "vsql_pgsql.h"
 #include "vsql_sqlite.h"
+#include "vsql_types.h"
 #define PGSQL 0
 #define MYSQL 1
 #define SQLITE 2

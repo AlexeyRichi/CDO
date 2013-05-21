@@ -1,6 +1,4 @@
-
 #include <sqlite3.h>
-
 #include "vsql_sqlite.h"
 #include <boost/algorithm/string.hpp>
 
@@ -51,7 +49,7 @@ bool VSQL_SQLITE::Statement::execute() {
     }
 }
 
-VSQL_SQLITE::Row VSQL_SQLITE::Statement::fetch() {
+Row VSQL_SQLITE::Statement::fetch() {
     std::string nome_coluna;
     if (this->_total_rows == 0) {
         sqlite3_reset(this->_result_set);
@@ -70,7 +68,7 @@ VSQL_SQLITE::Row VSQL_SQLITE::Statement::fetch() {
     return this->_row;
 }
 
-VSQL_SQLITE::ResultSet VSQL_SQLITE::Statement::fetchAll() {
+ResultSet VSQL_SQLITE::Statement::fetchAll() {
     std::string nome_coluna;
     int linhas = 0;
     if (this->_total_rows == 0) {

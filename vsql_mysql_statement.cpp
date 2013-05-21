@@ -48,7 +48,7 @@ bool VSQL_MYSQL::Statement::execute() {
     }
 }
 
-VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
+Row VSQL_MYSQL::Statement::fetch() {
 
     this->_field = mysql_fetch_field(this->_result_set);
 
@@ -67,7 +67,7 @@ VSQL_MYSQL::Row VSQL_MYSQL::Statement::fetch() {
     return this->_row;
 }
 
-VSQL_MYSQL::ResultSet VSQL_MYSQL::Statement::fetchAll() {
+ResultSet VSQL_MYSQL::Statement::fetchAll() {
     MYSQL_FIELD * field;
     this->_field = mysql_fetch_field(this->_result_set);
     this->_total_rows = (int) this->_result_set->row_count;

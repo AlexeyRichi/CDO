@@ -14,16 +14,12 @@
 #include <cstdlib>
 #include <sstream>
 #include <fstream>
-#include <map>
-#include <vector>
 #include <mysql/mysql.h>
+#include "vsql_types.h"
 
 namespace VSQL_MYSQL {
 
-    typedef std::map<std::string, std::string> Row;
-    typedef std::map<int, Row> ResultSet;
-
-     class Statement {
+    class Statement {
     private:
         std::string _queryString;
         MYSQL * _conn;

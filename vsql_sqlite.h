@@ -15,14 +15,11 @@
 #include <cstdlib>
 #include <sstream>
 #include <fstream>
-#include <map>
-#include <vector>
+#include "vsql_types.h"
 
 
 namespace VSQL_SQLITE {
-    typedef std::map<std::string, std::string> Row;
-    typedef std::map<int, Row> ResultSet;
-
+    
     class Statement {
     private:
         std::string _queryString;
