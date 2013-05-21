@@ -40,14 +40,33 @@ void VSQL_SQLITE::Statement::bindValue(std::string param, void* value, int data_
 }
 
 bool VSQL_SQLITE::Statement::execute() {
-    int retorno = sqlite3_prepare(this->_conn,this->_queryString.c_str(),-1,&this->_result_set,0);
-
-    if (retorno == SQLITE_OK) {
-        printf("Rodou belezinha\n");
+    sqlite3_prepare(this->_conn, this->_queryString.c_str(), -1, &this->_result_set, 0);
+    int retorno = sqlite3_step(this->_result_set);
+    if (retorno) {
+        this->_total_rows = sqlite3_total_changes(this->_conn);
+        return true;
     } else {
-        printf("Fudeu!\n");
+        this->_error_message = (char *) sqlite3_errmsg(this->_conn);
+        return false;
     }
-    
+}
+
+VSQL_SQLITE::Row VSQL_SQLITE::Statement::fetch() {
+
+    if (this->_total_rows == 0) {
+        sqlite3_reset(this->_result_set);
+        int i = 0;
+        //Se entrar aqui, a ultima query executa foi realmente um select
+        while (sqlite3_step(this->_result_set) == SQLITE_ROW) {
+            i++;
+        }
+        printf("Total de Linhas: %d\n", i);
+    }
+    return this->_row;
+}
+
+VSQL_SQLITE::ResultSet VSQL_SQLITE::Statement::fetchAll() {
+
 }
 
 int VSQL_SQLITE::Statement::rowCount() {
