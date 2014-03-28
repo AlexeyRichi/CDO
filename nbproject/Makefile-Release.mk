@@ -70,38 +70,38 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libVSQL.${CND_DLIB_EXT}: ${OBJECTFILE
 
 ${OBJECTDIR}/vsql.o: vsql.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql.o vsql.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/vsql.o vsql.cpp
 
 ${OBJECTDIR}/vsql_mysql_connection.o: vsql_mysql_connection.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_mysql_connection.o vsql_mysql_connection.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/vsql_mysql_connection.o vsql_mysql_connection.cpp
 
 ${OBJECTDIR}/vsql_mysql_statement.o: vsql_mysql_statement.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_mysql_statement.o vsql_mysql_statement.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/vsql_mysql_statement.o vsql_mysql_statement.cpp
 
 ${OBJECTDIR}/vsql_pgsql_connection.o: vsql_pgsql_connection.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_pgsql_connection.o vsql_pgsql_connection.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/vsql_pgsql_connection.o vsql_pgsql_connection.cpp
 
 ${OBJECTDIR}/vsql_pgsql_statement.o: vsql_pgsql_statement.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_pgsql_statement.o vsql_pgsql_statement.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/vsql_pgsql_statement.o vsql_pgsql_statement.cpp
 
 ${OBJECTDIR}/vsql_sqlite_connection.o: vsql_sqlite_connection.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_sqlite_connection.o vsql_sqlite_connection.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/vsql_sqlite_connection.o vsql_sqlite_connection.cpp
 
 ${OBJECTDIR}/vsql_sqlite_statement.o: vsql_sqlite_statement.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/vsql_sqlite_statement.o vsql_sqlite_statement.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/vsql_sqlite_statement.o vsql_sqlite_statement.cpp
 
 # Subprojects
 .build-subprojects:
